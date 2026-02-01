@@ -1,0 +1,24 @@
+# Paths
+session.path.set        = ~/.config/rtorrent/session
+directory.default.set   = ~/torrents
+schedule2 = watch_dir,5,5,load.start=~/torrents/watch/*.torrent
+
+# Network
+network.port_range.set  = 49160-49200
+network.port_random.set = no
+protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+# Limits
+throttle.global_down.max_rate.set_kb = 0
+throttle.global_up.max_rate.set_kb   = 0
+network.max_open_sockets.set         = 256
+network.max_open_files.set           = 512
+
+# Memory / performance (tune for your box)
+pieces.memory.max.set   = 536870912
+
+
+# Logging (optional)
+log.open_file           = "rtorrent", "~/.config/rtorrent/log"
+log.add_output          = "info", "rtorrent"
+

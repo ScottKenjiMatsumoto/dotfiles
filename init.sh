@@ -28,9 +28,12 @@ fi
 for dir in */; do
   dir="${dir%/}"
   case "$dir" in
-    .git) continue ;;
+    .git|scripts) continue ;;
   esac
   stow -t "$HOME" "$dir"
+  if [ -x "$dir/init.sh" ]; then
+    "$dir/init.sh"
+  fi
 done
 
 echo "Dotfiles stowed successfully."
