@@ -1,7 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    commit = "42fc28ba918343ebfd5565147a42a26580579482", -- v0.10.0
+    branch = "master",
+    commit = "cf12346a3414fa1b06af75c79faebe7f76df080a", -- master @ 2026-04-24
     build = ":TSUpdate",
     config = function ()
       local configs = require("nvim-treesitter.configs")
@@ -9,7 +10,8 @@ return {
         ensure_installed = {
           "c", "lua", "vim", "vimdoc", "query",
           "elixir", "heex", "javascript", "html",
-          "terraform", "hcl", "dart", "hjson"
+          "terraform", "hcl", "dart", "hjson",
+          "markdown", "markdown_inline"
         },
         sync_install = false,
         highlight = { enable = true },
