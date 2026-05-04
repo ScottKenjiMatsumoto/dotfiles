@@ -50,6 +50,17 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+-- Suppress Neovim upstream bug: treesitter highlighter calls nvim_buf_set_extmark
+-- with end_row beyond buffer bounds during bulk line deletions.
+vim.notify = (function(orig)
+  return function(msg, level, opts)
+    if type(msg) == 'string' and msg:find("Invalid 'end_row'", 1, true) then
+      return
+    end
+    orig(msg, level, opts)
+  end
+end)(vim.notify)
+
 vim.api.nvim_set_keymap(
     'n',
     '\\c ',
