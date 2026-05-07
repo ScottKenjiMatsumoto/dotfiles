@@ -34,6 +34,8 @@ vim.g.clipboard = {
   cache_enabled = 1,
 }
 
+vim.filetype.add({ extension = { hujson = "hjson" } })
+
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
