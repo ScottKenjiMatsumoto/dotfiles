@@ -1,0 +1,4 @@
+python 3.12.5
+terraform 1.13.4
+golang 1.26.3
+packer 1.15.3
