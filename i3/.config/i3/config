@@ -50,15 +50,15 @@ bindsym Shift+XF86MonBrightnessUp   exec --no-startup-id brightnessctl -q set +2
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl -q set 2%-
 
 # Print Screen
-# bindsym Print exec --no-startup-id scrot
-# bindsym Ctrl+Print exec --no-startup-id scrot -s
-set $shotdir ~/Pictures/Screenshots
-# bindsym --release Print exec --no-startup-id sh -c '
-# geom="$(i3-msg -t get_outputs | python3 -c "import sys,json; o=json.load(sys.stdin); f=[x for x in o if x.get(\"focused\")][0][\"rect\"]; print(f\"{f[\"x\"]},{f[\"y\"]},{f[\"width\"]},{f[\"height\"]}\")")"
-# scrot -a "$geom" "$shotdir/%Y-%m-%d_%H-%M-%S.png"
-# '
-
+set $shotdir $HOME/Pictures/Screenshots
+# full screen → file
+bindsym --release Print exec --no-startup-id scrot "$shotdir/%Y-%m-%d_%H-%M-%S.png"
+# region → file
 bindsym --release Ctrl+Print exec --no-startup-id scrot -s "$shotdir/%Y-%m-%d_%H-%M-%S.png"
+# region → clipboard
+bindsym --release Shift+Print exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t image/png -i $f && rm $f' /tmp/scrot-clip-%s.png
+# region → clipboard, 5s delay
+bindsym --release Ctrl+Shift+Print exec --no-startup-id scrot -s -d 5 -e 'xclip -selection clipboard -t image/png -i $f && rm $f' /tmp/scrot-clip-%s.png
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
